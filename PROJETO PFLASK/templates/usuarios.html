@@ -1,0 +1,39 @@
+{% include 'cabecalho.html' %}
+
+    <h1 class="mb-4">👤 Gerenciamento de Acesso (Usuários)</h1>
+    
+    <p class="lead">Controle e defina permissões de acesso para administradores e secretariado.</p>
+
+    <div class="card shadow p-4">
+        <h2 class="h5 mb-3">Lista de Usuários do Sistema</h2>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Nível de Acesso</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Administrador Geral</td>
+                    <td>admin@escola.com</td>
+                    <td>Total</td>
+                    <td class="text-center"><a href="#" class="btn btn-sm btn-info">Ver</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Secretaria Pedagógica</td>
+                    <td>sec.pedagogica@escola.com</td>
+                    <td>Limitado (Alunos/Professores)</td>
+                    <td class="text-center"><a href="#" class="btn btn-sm btn-info">Ver</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="#" class="btn btn-primary mt-3 w-25">Novo Usuário</a>
+    </div>
+
+{% include 'rodape.html' %}

@@ -1,0 +1,37 @@
+{% include 'cabecalho.html' %}
+
+    <h1 class="mb-4">⚙️ Configurações do Sistema</h1>
+    
+    <p class="lead">Ajuste os parâmetros globais da aplicação.</p>
+
+    <div class="card shadow p-4">
+        <form>
+            <h2 class="h5 mb-3">Configurações de Data e Hora</h2>
+            <div class="mb-3">
+                <label for="fusoHorario" class="form-label">Fuso Horário Padrão</label>
+                <select class="form-select" id="fusoHorario">
+                    <option selected>America/Sao_Paulo</option>
+                    <option>America/Fortaleza</option>
+                </select>
+            </div>
+            
+            <hr class="my-4">
+
+            <h2 class="h5 mb-3">Opções de Sistema</h2>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="modoManutencao" checked>
+                <label class="form-check-label" for="modoManutencao">
+                    Habilitar Modo Manutenção
+                </label>
+            </div>
+            
+            <div class="mb-3">
+                <label for="versao" class="form-label">Versão da Aplicação</label>
+                <input type="text" class="form-control" id="versao" value="v2.1.0 (Escola)" disabled>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">Salvar Configurações</button>
+        </form>
+    </div>
+
+{% include 'rodape.html' %}
