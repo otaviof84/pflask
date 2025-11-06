@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 alunos = [
     {"id": 1, "nome": "João", "idade": 16},
-    {"id": 2, "nome": "Maria", "idade": 17}
+    {"id": 2, "nome": "Sara", "idade": 17}
 ]
 
 professores = [
