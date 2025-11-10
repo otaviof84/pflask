@@ -1,0 +1,46 @@
+{% include 'cabecalho.html' %} 
+
+<div class="container mt-4">
+    <h2>🚀 Página de Saudações e Testes de Parâmetros</h2>
+    
+    <div class="card mb-4 p-4">
+        <h3 style="margin-bottom: 10px;">Resultado da Ação:</h3>
+        <div style="border: 1px solid #007bff; padding: 15px;">
+            <h1>👋 {{ valor_recebido }}</h1> 
+        </div>
+    </div>
+
+    <div class="card mb-4 p-4">
+        <h3>🔗 Testes de Envio de Dados:</h3>
+        
+        <p>
+            <a href="/saudacao1/Joao">➡️ Parâmetro de Rota (saudacao1/Joao)</a>
+        </p>
+
+        <p>
+            <a href="/saudacao2/?nome=Maria">❓ Query String (saudacao2/?nome=Maria)</a>
+        </p>
+        
+        <hr>
+
+        <div style="margin-top: 10px;">
+            <h4>🔐 Teste de Formulário POST (login)</h4>
+            <form action="/login" method="POST">
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="usuario" style="display: block; font-weight: bold;">👤 Usuário:</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="login" style="width: 250px; padding: 5px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label for="senha" style="display: block; font-weight: bold;">🔑 Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="senha" style="width: 250px; padding: 5px;">
+                </div>
+                
+                <button type="submit" style="padding: 8px 15px; cursor: pointer;">✅ Enviar Dados de Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'rodape.html' %}

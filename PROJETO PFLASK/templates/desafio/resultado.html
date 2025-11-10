@@ -1,0 +1,19 @@
+{% include 'cabecalho.html' %} 
+
+<main class="container mt-4">
+    <h2>Resultado do Desafio Obrigatório</h2>
+    
+    <p>Os seguintes dados foram recebidos pelo servidor:</p>
+
+    <div style="border: 2px solid green; padding: 15px; background-color: #e9f7ef;">
+        {% for chave, valor in dados.items() %}
+            <p><strong>{{ chave }}:</strong> {{ valor }}</p>
+        {% endfor %}
+    </div>
+
+    <p style="margin-top: 20px;">
+        <a href="/cadastro">Voltar ao Formulário de Cadastro</a>
+    </p>
+</main>
+
+{% include 'rodape.html' %}
