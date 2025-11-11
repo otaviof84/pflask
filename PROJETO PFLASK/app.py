@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sua_chave_secreta_aqui' 
 
 
-# Simulação de Banco de Dados com Listas Python
+
 alunos = [
     {"id": 1, "nome": "João", "idade": 16},
     {"id": 2, "nome": "Sara", "idade": 17}
@@ -16,9 +16,6 @@ professores = [
 ]
 
 
-# ==========================================================
-# === ROTAS BÁSICAS DO SISTEMA ===
-# ==========================================================
 
 @app.route('/')
 def index():
@@ -41,12 +38,7 @@ def sobre():
     return render_template('sobre_escola.html', titulo='Sobre a Escola')
 
 
-# ==========================================================
-# === ROTAS DE ALUNOS E PROFESSORES (CRUD) ===
-# ==========================================================
-# (Omissão do CRUD para concisão, mas elas permanecem no seu arquivo)
-# ... suas rotas listar_alunos, adicionar_aluno, editar_aluno, excluir_aluno ...
-# ... suas rotas listar_professores, adicionar_professor, editar_professor, excluir_professor ...
+
 
 
 @app.route('/alunos')
@@ -122,11 +114,9 @@ def excluir_professor(id):
 
 
 
-# ==========================================================
-# === ROTAS DA AULA 02: PARÂMETROS E FORMULÁRIOS ===
-# ==========================================================
 
-# 1. Parâmetro via Rota (Path Parameter)
+
+
 @app.route('/saudacao1/<nome>')
 def saudacao1(nome):
     return render_template(
@@ -135,7 +125,7 @@ def saudacao1(nome):
         titulo='Saudação 1'
     )
 
-# 2. Query String (Parâmetro GET)
+
 @app.route('/saudacao2/')
 def saudacao2():
     nome = request.args.get('nome', 'Visitante (nenhum nome enviado)') 
@@ -145,7 +135,7 @@ def saudacao2():
         titulo='Saudação 2'
     )
 
-# 3. Formulário HTML (Método POST) - Login
+
 @app.route('/login', methods=['POST'])
 def login():
     usuario = request.form['usuario']
@@ -159,9 +149,7 @@ def login():
         titulo='Login POST'
     )
 
-# ==========================================================
-# === DESAFIO OBRIGATÓRIO ===
-# ==========================================================
+
 
 @app.route('/cadastro')
 def formulario_cadastro():
