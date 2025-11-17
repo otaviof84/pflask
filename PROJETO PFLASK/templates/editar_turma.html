@@ -1,0 +1,51 @@
+{% include 'cabecalho.html' %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">{{ titulo }}</h1>
+    
+    
+    <form method="POST" action="{{ url_for('salvar_turma', id=turma.id) }}" class="card p-4 shadow">
+        
+        
+        <div class="mb-3">
+            <label for="semestre" class="form-label">Semestre (Ex: 2025.1):</label>
+            <input type="text" class="form-control" id="semestre" name="semestre" 
+                   value="{{ turma.semestre }}" required>
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="curso_id" class="form-label">Curso:</label>
+            <select name="curso_id" id="curso_id" class="form-select" required>
+                <option value="">Selecione um curso...</option>
+                {% for curso in lista_cursos %}
+                    
+                    <option value="{{ curso.id }}" 
+                            {% if curso.id == turma.curso_id %}selected{% endif %}>
+                        {{ curso.nome_curso }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="professor_id" class="form-label">Professor (Disciplina):</label>
+            <select name="professor_id" id="professor_id" class="form-select" required>
+                <option value="">Selecione um professor...</option>
+                {% for prof in lista_professores %}
+                    
+                    <option value="{{ prof.id }}" 
+                            {% if prof.id == turma.professor_id %}selected{% endif %}>
+                        {{ prof.nome }} ({{ prof.disciplina }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Atualizar Turma</button>
+        <a href="{{ url_for('listar_turmas') }}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+</div>
+
+{% include 'rodape.html' %}

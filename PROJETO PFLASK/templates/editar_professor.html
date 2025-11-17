@@ -2,28 +2,25 @@
 
     <h1 class="mb-4">Editar Professor: {{ professor.nome }}</h1>
     
-    <!-- 
-      ACTION DE ATUALIZAÇÃO: Chama a rota 'salvar_professor', 
-      passando o ID. A função no app.py irá usar o ID para ATUALIZAR.
-    -->
+    
     <form method="POST" action="{{ url_for('salvar_professor', id=professor.id) }}" class="card p-4 shadow">
         
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
-            <!-- PREENCHE O CAMPO COM DADO ATUAL -->
+            
             <input type="text" class="form-control" id="nome" name="nome" 
                    value="{{ professor.nome }}" required>
         </div>
         
         <div class="mb-3">
             <label for="disciplina" class="form-label">Disciplina:</label>
-            <!-- PREENCHE O CAMPO COM DADO ATUAL -->
+            
             <input type="text" class="form-control" id="disciplina" name="disciplina" 
                    value="{{ professor.disciplina }}" required>
         </div>
         
         <button type="submit" class="btn btn-primary">Atualizar Professor</button>
-        <!-- Retorna para a rota de listagem 'listar_professores' -->
+        
         <a href="{{ url_for('listar_professores') }}" class="btn btn-secondary mt-2">Cancelar</a>
     </form>
 
