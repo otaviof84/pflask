@@ -1,9 +1,23 @@
 {% include 'cabecalho.html' %}
 
+<div class="container mt-4">
+    <!-- Exibição de Mensagens Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <h1 class="mb-4">🧑‍🏫 Gerenciamento de Professores</h1>
 
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ url_for('adicionar_professor') }}" class="btn btn-success">
+        <!-- CORREÇÃO 1: Rota de Adicionar mudada para 'novo_professor' -->
+        <a href="{{ url_for('novo_professor') }}" class="btn btn-success">
             + Adicionar Novo Professor
         </a>
     </div>
@@ -28,10 +42,12 @@
                         <a href="{{ url_for('editar_professor', id=professor.id) }}" class="btn btn-sm btn-warning me-2">
                             Editar
                         </a>
-                        <a href="{{ url_for('excluir_professor', id=professor.id) }}" 
+                        
+                        <!-- CORREÇÃO 2: Rota de Excluir mudada para 'remover_professor' -->
+                        <a href="{{ url_for('remover_professor', id=professor.id) }}" 
                            class="btn btn-sm btn-danger"
-                           onclick="return confirm('Tem certeza que deseja excluir o professor {{ professor.nome }}?');">
-                            Excluir
+                           onclick="return confirm('Tem certeza que deseja remover o professor {{ professor.nome }}?');">
+                            Remover
                         </a>
                     </td>
                 </tr>
@@ -43,5 +59,6 @@
             </tbody>
         </table>
     </div>
+</div>
 
 {% include 'rodape.html' %}

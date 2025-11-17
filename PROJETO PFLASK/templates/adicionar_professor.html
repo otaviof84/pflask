@@ -1,18 +1,20 @@
 {% include 'cabecalho.html' %}
 
-    <h1 class="mb-4">Adicionar Professor</h1>
-    
-    <form method="POST" action="{{ url_for('adicionar_professor') }}" class="card p-4 shadow">
-        <div class="mb-3">
-            <label for="nome" class="form-label">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" required>
-        </div>
-        <div class="mb-3">
-            <label for="disciplina" class="form-label">Disciplina:</label>
-            <input type="text" class="form-control" id="disciplina" name="disciplina" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar Professor</button>
-        <a href="{{ url_for('listar_professores') }}" class="btn btn-secondary mt-2">Cancelar</a>
-    </form>
+    <h1 class="mb-4">Adicionar Professor</h1>
+    
+    <!-- CORREÇÃO AQUI: O endpoint para salvar é 'salvar_professor' (sem ID) -->
+    <form method="POST" action="{{ url_for('salvar_professor') }}" class="card p-4 shadow">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="mb-3">
+            <label for="disciplina" class="form-label">Disciplina:</label>
+            <input type="text" class="form-control" id="disciplina" name="disciplina" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Professor</button>
+        <!-- O botão de cancelar está correto, apontando para a listagem -->
+        <a href="{{ url_for('listar_professores') }}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
 
 {% include 'rodape.html' %}

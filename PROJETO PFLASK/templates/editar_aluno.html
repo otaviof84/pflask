@@ -2,17 +2,132 @@
 
     <h1 class="mb-4">Editar Aluno: {{ aluno.nome }}</h1>
     
-    <form method="POST" action="{{ url_for('editar_aluno', id=aluno.id) }}" class="card p-4 shadow">
+    <form method="POST" action="{{ url_for('salvar_aluno', id=aluno.id) }}" class="card p-4 shadow">
+        
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="{{ aluno.nome }}" required>
+            <input type="text" class="form-control" id="nome" name="nome" 
+                   value="{{ aluno.nome }}" required>
         </div>
+        
         <div class="mb-3">
             <label for="idade" class="form-label">Idade:</label>
-            <input type="number" class="form-control" id="idade" name="idade" value="{{ aluno.idade }}" required>
+            <input type="number" class="form-control" id="idade" name="idade" 
+                   value="{{ aluno.idade }}" required>
         </div>
+        
         <button type="submit" class="btn btn-primary">Atualizar Aluno</button>
         <a href="{{ url_for('listar_alunos') }}" class="btn btn-secondary mt-2">Cancelar</a>
     </form>
 
 {% include 'rodape.html' %}
+```eof
+
+### 1.2. Template de Listagem de Alunos (`alunos.html`) - Snippet da Tabela
+
+**Ação:** Edite o seu arquivo **`templates/alunos.html`**. Insira este código dentro do `<tbody>` (corpo da tabela), no loop que exibe os dados dos alunos.
+
+```html:templates/alunos.html (Snippet para Ações)
+{% for aluno in alunos %}
+<tr>
+    <td>{{ aluno.id }}</td>
+    <td>{{ aluno.nome }}</td>
+    <td>{{ aluno.idade }}</td>
+    
+    <td>
+        <a href="{{ url_for('editar_aluno', id=aluno.id) }}" class="btn btn-sm btn-info text-white me-2">
+            Editar
+        </a>
+        
+        <a href="{{ url_for('remover_aluno', id=aluno.id) }}" 
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('ATENÇÃO: Deseja realmente remover o aluno {{ aluno.nome }}?');">
+           Remover
+        </a>
+    </td>
+</tr>
+{% endfor %}
+```eof
+
+---
+
+## 2. Templates de Professor (CRUD)
+
+### 2.1. Template de Adicionar Professor (`adicionar_professor.html`)
+
+**Ação:** Crie o arquivo **`templates/adicionar_professor.html`**.
+
+```html:templates/adicionar_professor.html
+{% include 'cabecalho.html' %}
+
+    <h1 class="mb-4">Adicionar Professor</h1>
+    
+        <form method="POST" action="{{ url_for('salvar_professor') }}" class="card p-4 shadow">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="mb-3">
+            <label for="disciplina" class="form-label">Disciplina:</label>
+            <input type="text" class="form-control" id="disciplina" name="disciplina" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Professor</button>
+        <a href="{{ url_for('listar_professores') }}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+
+{% include 'rodape.html' %}
+```eof
+
+### 2.2. Template de Editar Professor (`editar_professor.html`)
+
+**Ação:** Crie o arquivo **`templates/editar_professor.html`**.
+
+```html:templates/editar_professor.html
+{% include 'cabecalho.html' %}
+
+    <h1 class="mb-4">Editar Professor: {{ professor.nome }}</h1>
+    
+    <form method="POST" action="{{ url_for('salvar_professor', id=professor.id) }}" class="card p-4 shadow">
+        
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" 
+                   value="{{ professor.nome }}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="disciplina" class="form-label">Disciplina:</label>
+            <input type="text" class="form-control" id="disciplina" name="disciplina" 
+                   value="{{ professor.disciplina }}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Atualizar Professor</button>
+        <a href="{{ url_for('listar_professores') }}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+
+{% include 'rodape.html' %}
+```eof
+
+### 2.3. Template de Listagem de Professores (`professores.html`) - Snippet da Tabela
+
+**Ação:** Edite o seu arquivo **`templates/professores.html`** para incluir os botões de ação na tabela.
+
+```html:templates/professores.html (Snippet para Ações)
+{% for professor in professores %}
+<tr>
+    <td>{{ professor.id }}</td>
+    <td>{{ professor.nome }}</td>
+    <td>{{ professor.disciplina }}</td>
+    
+    <td>
+        <a href="{{ url_for('editar_professor', id=professor.id) }}" class="btn btn-sm btn-info text-white me-2">
+            Editar
+        </a>
+        
+        <a href="{{ url_for('remover_professor', id=professor.id) }}" 
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('ATENÇÃO: Deseja realmente remover o professor {{ professor.nome }}?');">
+           Remover
+        </a>
+    </td>
+</tr>

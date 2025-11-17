@@ -1,47 +1,69 @@
 {% include 'cabecalho.html' %}
 
-    <h1 class="mb-4">🎓 Gerenciamento de Alunos</h1>
+<div class="container mt-4">
+    <!-- Exibição de Mensagens Flash (Opcional, mas recomendado) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <!-- As categorias 'success' e 'danger' correspondem ao Bootstrap -->
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ url_for('adicionar_aluno') }}" class="btn btn-success">
-            + Adicionar Novo Aluno
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Listagem de Alunos</h1>
+        
+        <!-- 
+          CORREÇÃO: A rota no app.py chama-se 'novo_aluno', não 'adicionar_aluno'.
+        -->
+        <a href="{{ url_for('novo_aluno') }}" class="btn btn-primary">
+            Adicionar Novo Aluno
         </a>
     </div>
 
-    <div class="card shadow p-3">
-        <table class="table table-striped table-hover">
-            <thead>
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th style="width: 200px;">Ações</th> <!-- Coluna de ações -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.id }}</td>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.idade }}</td>
+                
+                <!-- BOTÕES DE AÇÃO (EDITAR E REMOVER) -->
+                <td>
+                    <!-- Botão EDITAR: Chama a rota 'editar_aluno' com o ID -->
+                    <a href="{{ url_for('editar_aluno', id=aluno.id) }}" class="btn btn-sm btn-info text-white me-2">
+                        Editar
+                    </a>
+                    
+                    <!-- Botão REMOVER: Chama a rota 'remover_aluno' com o ID e confirmação -->
+                    <a href="{{ url_for('remover_aluno', id=aluno.id) }}" 
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('ATENÇÃO: Deseja realmente remover o aluno {{ aluno.nome }}?');">
+                       Remover
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+                <!-- Mensagem caso a lista de alunos esteja vazia -->
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th class="text-center">Ações</th>
+                    <td colspan="4" class="text-center">Nenhum aluno cadastrado ainda.</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for aluno in alunos %}
-                <tr>
-                    <td>{{ aluno.id }}</td>
-                    <td>{{ aluno.nome }}</td>
-                    <td>{{ aluno.idade }}</td>
-                    <td class="text-center">
-                        <a href="{{ url_for('editar_aluno', id=aluno.id) }}" class="btn btn-sm btn-warning me-2">
-                            Editar
-                        </a>
-                        <a href="{{ url_for('excluir_aluno', id=aluno.id) }}" 
-                           class="btn btn-sm btn-danger"
-                           onclick="return confirm('Tem certeza que deseja excluir o aluno {{ aluno.nome }}?');">
-                            Excluir
-                        </a>
-                    </td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="4" class="text-center">Nenhum aluno cadastrado.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% include 'rodape.html' %}
